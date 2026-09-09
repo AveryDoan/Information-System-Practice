@@ -57,13 +57,21 @@ export default function App() {
             <Route path="/do" element={withShell(<WhatToDo />)} />
             <Route path="/destination/:id" element={withShell(<DestinationDetail />)} />
             <Route path="/itinerary/map" element={withShell(<ItineraryMap />)} />
-            <Route path="/trip" element={withShell(<ProtectedRoute><TripDashboard /></ProtectedRoute>)} />
+            <Route path="/trip/:tripId" element={withShell(<ProtectedRoute><TripDashboard /></ProtectedRoute>)} />
 
-            {/* Plan Trip wizard — no tab bar */}
-            <Route path="/plan/who" element={withShell(<PlanWho />, false)} />
-            <Route path="/plan/dates" element={withShell(<PlanDates />, false)} />
-            <Route path="/plan/budget" element={withShell(<PlanBudget />, false)} />
-            <Route path="/plan/interests" element={withShell(<PlanInterests />, false)} />
+            {/* Plan Trip wizard — no tab bar, requires auth (a trip needs an owner) */}
+            <Route path="/plan/who" element={withShell(<ProtectedRoute><PlanWho /></ProtectedRoute>, false)} />
+            <Route path="/plan/dates" element={withShell(<ProtectedRoute><PlanDates /></ProtectedRoute>, false)} />
+            <Route path="/plan/budget" element={withShell(<ProtectedRoute><PlanBudget /></ProtectedRoute>, false)} />
+            <Route
+              path="/plan/interests"
+              element={withShell(
+                <ProtectedRoute>
+                  <PlanInterests />
+                </ProtectedRoute>,
+                false,
+              )}
+            />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

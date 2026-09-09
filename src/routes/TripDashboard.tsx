@@ -1,5 +1,27 @@
-import { Placeholder } from '../components/Placeholder'
+import { useParams } from 'react-router-dom'
+import { TripItinerary } from '../components/TripItinerary'
+import { useTrip } from '../hooks/useTrips'
 
 export function TripDashboard() {
-  return <Placeholder screenNumber="05 · Trip Dashboard" title="Trip Dashboard" phase="Phase 4 (Trip planning)" />
+  const { tripId } = useParams()
+  const trip = useTrip(Number(tripId))
+
+  if (trip.isLoading) return <p className="px-5 pt-14 text-sm text-muted">Loading trip…</p>
+  if (trip.isError || !trip.data) return <p className="px-5 pt-14 text-sm text-rust">Couldn't load this trip.</p>
+
+  const { trip: tripRow, items } = trip.data
+
+  return (
+    <div className="flex flex-col gap-5 px-5 pb-6 pt-14">
+      <div className="flex flex-col gap-1">
+        <h1 className="text-xl font-bold text-ink">{tripRow.trip_name}</h1>
+        <p className="text-xs text-muted">
+          {tripRow.start_date && new Date(tripRow.start_date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}
+          {' – '}
+          {tripRow.end_date && new Date(tripRow.end_date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}
+        </p>
+      </div>
+      <TripItinerary items={items} />
+    </div>
+  )
 }
