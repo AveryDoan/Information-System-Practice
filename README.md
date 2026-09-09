@@ -54,7 +54,13 @@ supabase/
 
 ## Build status
 
-Phase 1 (scaffold, design tokens, Supabase wiring, Home screen) is done and
-wired to live data. All other visitor-app screens are routed and render as
-placeholders until their build phase — see the project plan for the phase
-breakdown.
+Done and wired to live Supabase data:
+- Phase 1 — scaffold, design tokens, Home screen
+- Phase 2 — Auth (Login/Sign Up/Profile via Supabase Auth)
+- Phase 3 — Destination Detail, Event Discovery, Where to Stay/Eat/Do, save/unsave
+- Phase 4 — Plan Trip wizard, Trip Dashboard, My Trips, Recommended Itinerary
+  (auto-itinerary is a deterministic category match today, not a real AI call)
+
+Still placeholder: AI Chatbot, Smart Itinerary Planner, Discover Swipe,
+Itinerary Map (needs a maps API key decision) — see `src/lib/ai.ts` for the
+mock AI interface these will plug into.
