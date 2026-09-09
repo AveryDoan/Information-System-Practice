@@ -2,6 +2,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { ReactNode } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppShell } from './components/AppShell'
+import { ProtectedRoute } from './components/ProtectedRoute'
+import { AuthProvider } from './lib/auth'
 import { AIChatbot } from './routes/AIChatbot'
 import { DestinationDetail } from './routes/DestinationDetail'
 import { DiscoverSwipe } from './routes/DiscoverSwipe'
@@ -32,37 +34,39 @@ function withShell(node: ReactNode, showNav = true) {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          {/* Auth — no tab bar */}
-          <Route path="/login" element={withShell(<Login />, false)} />
-          <Route path="/signup" element={withShell(<SignUp />, false)} />
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Auth — no tab bar */}
+            <Route path="/login" element={withShell(<Login />, false)} />
+            <Route path="/signup" element={withShell(<SignUp />, false)} />
 
-          {/* Core tabs */}
-          <Route path="/" element={withShell(<Home />)} />
-          <Route path="/explore" element={withShell(<DiscoverSwipe />)} />
-          <Route path="/itinerary/recommended" element={withShell(<RecommendedItinerary />)} />
-          <Route path="/trips" element={withShell(<MyTrips />)} />
-          <Route path="/profile" element={withShell(<Profile />)} />
+            {/* Core tabs */}
+            <Route path="/" element={withShell(<Home />)} />
+            <Route path="/explore" element={withShell(<DiscoverSwipe />)} />
+            <Route path="/itinerary/recommended" element={withShell(<RecommendedItinerary />)} />
+            <Route path="/trips" element={withShell(<ProtectedRoute><MyTrips /></ProtectedRoute>)} />
+            <Route path="/profile" element={withShell(<ProtectedRoute><Profile /></ProtectedRoute>)} />
 
-          {/* AI + browse */}
-          <Route path="/chat" element={withShell(<AIChatbot />)} />
-          <Route path="/planner" element={withShell(<ItineraryPlanner />)} />
-          <Route path="/events" element={withShell(<EventDiscovery />)} />
-          <Route path="/stay" element={withShell(<WhereToStay />)} />
-          <Route path="/eat" element={withShell(<WhereToEat />)} />
-          <Route path="/do" element={withShell(<WhatToDo />)} />
-          <Route path="/destination/:id" element={withShell(<DestinationDetail />)} />
-          <Route path="/itinerary/map" element={withShell(<ItineraryMap />)} />
-          <Route path="/trip" element={withShell(<TripDashboard />)} />
+            {/* AI + browse */}
+            <Route path="/chat" element={withShell(<AIChatbot />)} />
+            <Route path="/planner" element={withShell(<ItineraryPlanner />)} />
+            <Route path="/events" element={withShell(<EventDiscovery />)} />
+            <Route path="/stay" element={withShell(<WhereToStay />)} />
+            <Route path="/eat" element={withShell(<WhereToEat />)} />
+            <Route path="/do" element={withShell(<WhatToDo />)} />
+            <Route path="/destination/:id" element={withShell(<DestinationDetail />)} />
+            <Route path="/itinerary/map" element={withShell(<ItineraryMap />)} />
+            <Route path="/trip" element={withShell(<ProtectedRoute><TripDashboard /></ProtectedRoute>)} />
 
-          {/* Plan Trip wizard — no tab bar */}
-          <Route path="/plan/who" element={withShell(<PlanWho />, false)} />
-          <Route path="/plan/dates" element={withShell(<PlanDates />, false)} />
-          <Route path="/plan/budget" element={withShell(<PlanBudget />, false)} />
-          <Route path="/plan/interests" element={withShell(<PlanInterests />, false)} />
-        </Routes>
-      </BrowserRouter>
+            {/* Plan Trip wizard — no tab bar */}
+            <Route path="/plan/who" element={withShell(<PlanWho />, false)} />
+            <Route path="/plan/dates" element={withShell(<PlanDates />, false)} />
+            <Route path="/plan/budget" element={withShell(<PlanBudget />, false)} />
+            <Route path="/plan/interests" element={withShell(<PlanInterests />, false)} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </QueryClientProvider>
   )
 }
