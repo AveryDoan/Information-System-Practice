@@ -60,7 +60,9 @@ Done and wired to live Supabase data:
 - Phase 3 — Destination Detail, Event Discovery, Where to Stay/Eat/Do, save/unsave
 - Phase 4 — Plan Trip wizard, Trip Dashboard, My Trips, Recommended Itinerary
   (auto-itinerary is a deterministic category match today, not a real AI call)
+- Phase 5 — Discover (button-driven swipe over `saved_items`), AI Chatbot
+  (fully mocked — see `src/lib/ai.ts`, clearly labeled in the UI as a mock reply)
 
-Still placeholder: AI Chatbot, Smart Itinerary Planner, Discover Swipe,
-Itinerary Map (needs a maps API key decision) — see `src/lib/ai.ts` for the
-mock AI interface these will plug into.
+Still placeholder: Smart Itinerary Planner, Itinerary Map (needs a maps API
+key decision). Swap `src/lib/ai.ts` for a real model call (e.g. via a
+Supabase Edge Function, so no key sits in client code) whenever that's ready.
