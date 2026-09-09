@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+
+/*
+ * Design tokens pulled from the Figma "NT Tourism App Prototype" file
+ * (Home screen, node 1:2) via get_design_context.
+ */
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --color-sand: #fdf8f3; /* app background */
+  --color-ink: #2b2420; /* primary text */
+  --color-muted: #736b66; /* secondary text */
+  --color-border-soft: #e5ded4;
+  --color-border-card: #ebe3d9;
+  --color-border-nav: #ede5de;
+
+  --color-teal: #0e4749; /* hero / primary brand */
+  --color-amber: #e8a33d; /* primary CTA */
+  --color-rust: #c1440e; /* links, accents, active state */
+  --color-chip: #faedde; /* date-chip background */
+  --color-nav-muted: #99918c; /* inactive nav icon/label */
+  --color-nav-active-bg: #e9e3d9;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: var(--color-sand);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100svh;
+}
