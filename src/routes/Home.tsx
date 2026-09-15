@@ -42,12 +42,14 @@ export function Home() {
           Tell us your vibe: wildlife, hidden gems, culture or family fun — and we'll build a day-by-day itinerary
           with maps, timing and events.
         </p>
-        <Link
-          to="/plan/who"
-          className="mt-1 self-start rounded-[20px] bg-amber px-4 py-2.5 text-xs font-semibold text-ink"
-        >
-          Start planning →
-        </Link>
+        <div className="mt-1 flex items-center gap-4">
+          <Link to="/plan/who" className="self-start rounded-[20px] bg-amber px-4 py-2.5 text-xs font-semibold text-ink">
+            Start planning →
+          </Link>
+          <Link to="/planner" className="text-xs font-semibold text-white underline underline-offset-2">
+            Or describe your trip
+          </Link>
+        </div>
       </div>
 
       {/* Discover now */}

@@ -230,3 +230,5 @@ create policy "public reads external data" on public.external_data
   for select using (
     exists (select 1 from public.tourism_content c where c.content_id = content_id and c.status = 'Published')
   );
+
+

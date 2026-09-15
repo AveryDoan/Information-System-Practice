@@ -15,30 +15,25 @@ export async function sendChatMessage(history: AiChatMessage[]): Promise<string>
   return `(mock AI reply) You said: "${lastUserMessage}". Once this is wired to a real model, I'll answer using live Northern Territory tourism data.`
 }
 
-export interface TripBrief {
-  who: string
-  startDate: string
-  endDate: string
-  budgetLevel: 'Budget' | 'Comfort' | 'Premium'
-  interests: string[]
+// Category keywords the Smart Itinerary Planner matches a free-text "vibe"
+// against, standing in for real intent extraction. Categories must match
+// tourism_content.category values (see supabase/seed.sql).
+const INTEREST_KEYWORDS: Record<string, string[]> = {
+  Nature: ['nature', 'waterfall', 'park', 'hike', 'hiking', 'outdoor', 'scenery', 'gorge', 'bush'],
+  Culture: ['culture', 'art', 'festival', 'history', 'aboriginal', 'heritage', 'museum'],
+  Wildlife: ['wildlife', 'animal', 'animals', 'crocodile', 'crocs', 'bird', 'reptile', 'safari'],
+  Food: ['food', 'eat', 'restaurant', 'market', 'cuisine', 'dining', 'hungry'],
+  Family: ['family', 'kids', 'children', 'relax', 'relaxing'],
 }
 
-export interface GeneratedItineraryDay {
-  day: number
-  items: { title: string; time: string; note: string }[]
-}
-
-export async function generateItinerary(brief: TripBrief): Promise<GeneratedItineraryDay[]> {
-  await mockDelay()
-  return [
-    {
-      day: 1,
-      items: [
-        { title: 'Arrive in Darwin', time: '10:00 AM', note: `Mock itinerary for ${brief.who}` },
-        { title: 'Mindil Beach Sunset Markets', time: '5:00 PM', note: `Matches interest: ${brief.interests[0] ?? 'general'}` },
-      ],
-    },
-  ]
+/** Naive keyword match from a free-text trip description to our content categories. */
+export async function inferInterestsFromPrompt(prompt: string): Promise<string[]> {
+  await mockDelay(900) // sell the "thinking" moment — this is instant in reality
+  const lower = prompt.toLowerCase()
+  const matches = Object.entries(INTEREST_KEYWORDS)
+    .filter(([, keywords]) => keywords.some((k) => lower.includes(k)))
+    .map(([category]) => category)
+  return matches.length ? matches : Object.keys(INTEREST_KEYWORDS)
 }
 
 function mockDelay(ms = 500) {

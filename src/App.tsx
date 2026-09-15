@@ -50,7 +50,7 @@ export default function App() {
 
             {/* AI + browse */}
             <Route path="/chat" element={withShell(<AIChatbot />)} />
-            <Route path="/planner" element={withShell(<ItineraryPlanner />)} />
+            <Route path="/planner" element={withShell(<ProtectedRoute><ItineraryPlanner /></ProtectedRoute>)} />
             <Route path="/events" element={withShell(<EventDiscovery />)} />
             <Route path="/stay" element={withShell(<WhereToStay />)} />
             <Route path="/eat" element={withShell(<WhereToEat />)} />

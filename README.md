@@ -22,6 +22,13 @@ cp .env.example .env.local   # fill in your Supabase project URL + publishable k
 npm run dev
 ```
 
+## Troubleshooting
+
+`npm install` hanging indefinitely on this network (and the Supabase CLI's
+direct `db push` failing with `ECONNREFUSED` on an IPv6 address) both trace to
+the same cause: IPv6 routes are broken/blackholed here, and IPv6 is tried
+first. Fix for npm: `NODE_OPTIONS="--dns-result-order=ipv4first" npm install`.
+
 ## Database
 
 Schema and RLS policies live in `supabase/migrations/0001_init.sql`; sample data in
