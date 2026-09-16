@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppShell } from './components/AppShell'
 import { ProtectedRoute } from './components/ProtectedRoute'
+import { RoleProtectedRoute } from './components/RoleProtectedRoute'
 import { AuthProvider } from './lib/auth'
 import { AIChatbot } from './routes/AIChatbot'
 import { DestinationDetail } from './routes/DestinationDetail'
@@ -20,10 +21,27 @@ import { PlanWho } from './routes/PlanWho'
 import { Profile } from './routes/Profile'
 import { RecommendedItinerary } from './routes/RecommendedItinerary'
 import { SignUp } from './routes/SignUp'
+import { EditContent } from './routes/staff/EditContent'
+import { EngagementAnalytics } from './routes/staff/EngagementAnalytics'
+import { ManageProviders } from './routes/staff/ManageProviders'
+import { ManageTourismContent } from './routes/staff/ManageTourismContent'
+import { RecommendationAnalytics } from './routes/staff/RecommendationAnalytics'
+import { StaffDashboard } from './routes/staff/StaffDashboard'
+import { StaffLogin } from './routes/staff/StaffLogin'
 import { TripDashboard } from './routes/TripDashboard'
 import { WhatToDo } from './routes/WhatToDo'
 import { WhereToEat } from './routes/WhereToEat'
 import { WhereToStay } from './routes/WhereToStay'
+
+const STAFF_ROLES = ['NTG Staff', 'Administrator'] as const
+
+function staffOnly(node: ReactNode) {
+  return (
+    <RoleProtectedRoute roles={[...STAFF_ROLES]} loginPath="/staff/login">
+      {node}
+    </RoleProtectedRoute>
+  )
+}
 
 const queryClient = new QueryClient()
 
@@ -72,6 +90,18 @@ export default function App() {
                 false,
               )}
             />
+
+            {/* Staff Portal — desktop dashboard, not the phone-frame shell */}
+            <Route path="/staff/login" element={<StaffLogin />} />
+            <Route path="/staff" element={staffOnly(<StaffDashboard />)} />
+            <Route path="/staff/content" element={staffOnly(<ManageTourismContent />)} />
+            <Route path="/staff/content/new" element={staffOnly(<EditContent />)} />
+            <Route path="/staff/content/:id/edit" element={staffOnly(<EditContent />)} />
+            <Route path="/staff/providers" element={staffOnly(<ManageProviders />)} />
+            <Route path="/staff/providers/new" element={staffOnly(<EditContent />)} />
+            <Route path="/staff/providers/:id/edit" element={staffOnly(<EditContent />)} />
+            <Route path="/staff/analytics" element={staffOnly(<EngagementAnalytics />)} />
+            <Route path="/staff/recommendations" element={staffOnly(<RecommendationAnalytics />)} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

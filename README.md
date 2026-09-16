@@ -70,6 +70,17 @@ Done and wired to live Supabase data:
 - Phase 5 — Discover (button-driven swipe over `saved_items`), AI Chatbot
   (fully mocked — see `src/lib/ai.ts`, clearly labeled in the UI as a mock reply)
 
-Still placeholder: Smart Itinerary Planner, Itinerary Map (needs a maps API
-key decision). Swap `src/lib/ai.ts` for a real model call (e.g. via a
-Supabase Edge Function, so no key sits in client code) whenever that's ready.
+- Staff Portal (`/staff/login`) — a separate desktop dashboard (not the phone
+  frame), gated to `NTG Staff` / `Administrator` roles: content moderation
+  (Manage Tourism Content, Manage Providers & Partnerships share one editor),
+  Visitor Engagement Analytics, and Recommendation Analytics & Trends — all
+  real aggregate queries, no mock numbers. Promote an account to staff with
+  `update users set role = 'NTG Staff' where email = '...'` in the SQL Editor.
+
+Swap `src/lib/ai.ts` for a real model call (e.g. via a Supabase Edge
+Function, so no key sits in client code) whenever that's ready.
+
+Still not built: System Administrator portal (users/roles, system config,
+integrations, health monitor, audit log — see the Figma file's third
+section), and the Smart Itinerary Planner is a keyword matcher, not a real
+model.

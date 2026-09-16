@@ -101,7 +101,8 @@ export function useCreateTrip() {
       if (input.interests.length) candidateQuery = candidateQuery.in('category', input.interests)
       const { data: candidates } = await candidateQuery.limit(days.length * 2)
 
-      const picks = candidates && candidates.length ? candidates : (await supabase.from('tourism_content').select('*').eq('status', 'Published').limit(days.length * 2)).data ?? []
+      const matchedByInterest = Boolean(candidates && candidates.length)
+      const picks = matchedByInterest ? candidates! : (await supabase.from('tourism_content').select('*').eq('status', 'Published').limit(days.length * 2)).data ?? []
 
       if (picks.length) {
         const tripItems = picks.map((c, index) => ({
@@ -111,6 +112,19 @@ export function useCreateTrip() {
         }))
         const { error: itemsError } = await supabase.from('trip_items').insert(tripItems)
         if (itemsError) throw itemsError
+
+        // Log why each item was suggested — gives the Staff Portal's
+        // Recommendation Analytics screen real data instead of an empty table.
+        const recommendations = picks.map((c) => ({
+          user_id: profile.user_id,
+          content_id: c.content_id,
+          recommendation_reason: matchedByInterest
+            ? `Matches interest: ${c.category ?? 'general'}`
+            : 'No exact interest match — filled from general published content',
+          recommendation_score: matchedByInterest ? 0.85 : 0.5,
+        }))
+        const { error: recError } = await supabase.from('recommendations').insert(recommendations)
+        if (recError) throw recError
       }
 
       return trip
