@@ -21,6 +21,13 @@ import { PlanWho } from './routes/PlanWho'
 import { Profile } from './routes/Profile'
 import { RecommendedItinerary } from './routes/RecommendedItinerary'
 import { SignUp } from './routes/SignUp'
+import { AdminDashboard } from './routes/admin/AdminDashboard'
+import { AdminLogin } from './routes/admin/AdminLogin'
+import { AuditLog } from './routes/admin/AuditLog'
+import { Integrations } from './routes/admin/Integrations'
+import { ManageUsers } from './routes/admin/ManageUsers'
+import { SystemConfig } from './routes/admin/SystemConfig'
+import { SystemHealth } from './routes/admin/SystemHealth'
 import { EditContent } from './routes/staff/EditContent'
 import { EngagementAnalytics } from './routes/staff/EngagementAnalytics'
 import { ManageProviders } from './routes/staff/ManageProviders'
@@ -38,6 +45,14 @@ const STAFF_ROLES = ['NTG Staff', 'Administrator'] as const
 function staffOnly(node: ReactNode) {
   return (
     <RoleProtectedRoute roles={[...STAFF_ROLES]} loginPath="/staff/login">
+      {node}
+    </RoleProtectedRoute>
+  )
+}
+
+function adminOnly(node: ReactNode) {
+  return (
+    <RoleProtectedRoute roles={['Administrator']} loginPath="/admin/login">
       {node}
     </RoleProtectedRoute>
   )
@@ -102,6 +117,15 @@ export default function App() {
             <Route path="/staff/providers/:id/edit" element={staffOnly(<EditContent />)} />
             <Route path="/staff/analytics" element={staffOnly(<EngagementAnalytics />)} />
             <Route path="/staff/recommendations" element={staffOnly(<RecommendationAnalytics />)} />
+
+            {/* System Admin — same desktop shell, gated to Administrator only */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={adminOnly(<AdminDashboard />)} />
+            <Route path="/admin/users" element={adminOnly(<ManageUsers />)} />
+            <Route path="/admin/integrations" element={adminOnly(<Integrations />)} />
+            <Route path="/admin/health" element={adminOnly(<SystemHealth />)} />
+            <Route path="/admin/audit" element={adminOnly(<AuditLog />)} />
+            <Route path="/admin/config" element={adminOnly(<SystemConfig />)} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
