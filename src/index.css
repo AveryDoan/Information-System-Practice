@@ -3,13 +3,30 @@
 @import '@fontsource/inter/500.css';
 @import '@fontsource/inter/600.css';
 @import '@fontsource/inter/700.css';
+@import '@fontsource/bebas-neue/400.css';
 
 /*
- * Design tokens pulled from the Figma "NT Tourism App Prototype" file
- * (Home screen, node 1:2) via get_design_context.
+ * Design tokens. Originally pulled from the Figma "NT Tourism App Prototype"
+ * file (Home screen, node 1:2) via get_design_context; the brand colors below
+ * were then re-themed to match public/favicon.svg + public/icons.svg (the
+ * gold-mountain / orange-wordmark logo) — gold and orange replace the earlier
+ * amber/rust, and the "teal" primary-surface role becomes a deep bronze in
+ * the same warm family instead of leaving a leftover cool color. Token names
+ * (--color-teal etc.) are kept as-is even though the values no longer match
+ * their names, since ~40 components already reference them by name.
  */
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
+  /*
+   * Display font for headings — researched from southaustralia.com/app, whose
+   * bold condensed all-caps headline style (a custom proprietary typeface
+   * there) is the pattern this borrows. Bebas Neue is the free, self-hosted
+   * equivalent: same "adventure/travel poster" impact, applied via `.heading`
+   * below rather than a plain `font-display` utility, since it also needs
+   * uppercase + wider tracking to read well (Bebas Neue has no true lowercase
+   * forms — it renders letters as caps regardless of input case).
+   */
+  --font-display: 'Bebas Neue', 'Inter', sans-serif;
 
   --color-sand: #fdf8f3; /* app background */
   --color-ink: #2b2420; /* primary text */
@@ -18,12 +35,13 @@
   --color-border-card: #ebe3d9;
   --color-border-nav: #ede5de;
 
-  --color-teal: #0e4749; /* hero / primary brand */
-  --color-amber: #e8a33d; /* primary CTA */
-  --color-rust: #c1440e; /* links, accents, active state */
-  --color-chip: #faedde; /* date-chip background */
+  --color-teal: #3d2914; /* hero / primary brand — deep bronze (was teal) */
+  --color-amber: #c99e66; /* primary CTA — logo gold (was amber #e8a33d) */
+  --color-rust: #e88244; /* links, accents, active state — logo orange (was rust #c1440e) */
+  --color-chip: #fbe9d9; /* date-chip background, tinted from the new orange */
   --color-nav-muted: #99918c; /* inactive nav icon/label */
   --color-nav-active-bg: #e9e3d9;
+  --color-success: #3f7d52; /* positive status badges (Published/Operational/Connected) — kept separate from the rebrand so "good" still reads as green, not brand-brown */
 }
 
 :root {
@@ -40,4 +58,12 @@ body {
 
 #root {
   min-height: 100svh;
+}
+
+/* Bold condensed display treatment for headings — see --font-display above. */
+.heading {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
 }

@@ -9,7 +9,7 @@ select * from (values
   ('Darwin Festival', 'Event', 'Darwin''s annual celebration of music, theatre, comedy and visual arts.', 'Darwin CBD', 'Culture', 'Published', 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800', (current_date + interval '5 days' + time '18:00')::timestamptz),
   ('Mindil Beach Sunset Markets', 'Event', 'Food stalls, craft stalls and live music on the sand as the sun sets over the harbour.', 'Mindil Beach', 'Food', 'Published', 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=800', (current_date + interval '12 days' + time '16:00')::timestamptz),
   ('Cicada Lodge', 'Accommodation', 'Boutique riverside lodge on Nitmiluk (Katherine Gorge).', 'Katherine', 'Family', 'Published', 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800', null),
-  ('Jumping Crocodile Cruise', 'Tour', 'Guided boat tour spotting saltwater crocodiles on the Adelaide River.', 'Adelaide River', 'Wildlife', 'Published', 'https://images.unsplash.com/photo-1551986782-d0169b3f8fa7?w=800', null),
+  ('Jumping Crocodile Cruise', 'Tour', 'Guided boat tour spotting saltwater crocodiles on the Adelaide River.', 'Adelaide River', 'Wildlife', 'Published', 'https://images.unsplash.com/photo-1578022556726-81b21ac91f98?w=800', null),
   ('Parap Village Market', 'Experience', 'Multicultural Saturday market known for its laksa and tropical produce.', 'Parap', 'Food', 'Published', 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800', null)
 ) as v(title, content_type, description, location, category, status, image_url, event_datetime)
 where not exists (

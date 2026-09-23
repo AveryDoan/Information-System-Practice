@@ -4,6 +4,8 @@
 // once the rest of the flow is working — nothing else in the app needs to
 // change since callers only depend on this interface.
 
+import { getFakeAiReply } from './fakeAiConversation'
+
 export interface AiChatMessage {
   role: 'user' | 'assistant'
   content: string
@@ -12,7 +14,7 @@ export interface AiChatMessage {
 export async function sendChatMessage(history: AiChatMessage[]): Promise<string> {
   const lastUserMessage = [...history].reverse().find((m) => m.role === 'user')?.content ?? ''
   await mockDelay()
-  return `(mock AI reply) You said: "${lastUserMessage}". Once this is wired to a real model, I'll answer using live Northern Territory tourism data.`
+  return getFakeAiReply(lastUserMessage)
 }
 
 // Category keywords the Smart Itinerary Planner matches a free-text "vibe"

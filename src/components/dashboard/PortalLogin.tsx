@@ -1,14 +1,17 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import wordmark from '../../assets/wordmark.svg'
 import { useAuth } from '../../lib/auth'
 
 interface PortalLoginProps {
   heading: string
   subheading: string
   redirectTo: string
+  /** Full-bleed background photo behind the card — see src/lib/heroPhotos.ts */
+  photo: string
 }
 
-export function PortalLogin({ heading, subheading, redirectTo }: PortalLoginProps) {
+export function PortalLogin({ heading, subheading, redirectTo, photo }: PortalLoginProps) {
   const { signIn } = useAuth()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
@@ -27,10 +30,14 @@ export function PortalLogin({ heading, subheading, redirectTo }: PortalLoginProp
   }
 
   return (
-    <div className="flex min-h-svh items-center justify-center bg-teal px-6">
-      <div className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-xl">
-        <div className="mb-6 flex flex-col gap-1 text-center">
-          <p className="text-lg font-bold text-ink">{heading}</p>
+    <div className="relative flex min-h-svh items-center justify-center px-6">
+      <img src={photo} alt="" className="absolute inset-0 size-full object-cover" />
+      <div className="absolute inset-0 bg-teal/75" />
+
+      <div className="relative w-full max-w-sm rounded-3xl bg-white p-8 shadow-xl">
+        <div className="mb-6 flex flex-col items-center gap-1 text-center">
+          <img src={wordmark} alt="Tourism in Northern Territory" className="mb-2 h-14 w-auto object-contain" />
+          <p className="heading text-2xl text-ink">{heading}</p>
           <p className="text-sm text-muted">{subheading}</p>
         </div>
 

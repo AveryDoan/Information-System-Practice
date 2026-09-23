@@ -38,7 +38,7 @@ export function RecommendedItinerary() {
     <div className="flex flex-col gap-5 px-5 pb-6 pt-14">
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-1">
-          <h1 className="text-xl font-bold text-ink">Your Itinerary</h1>
+          <h1 className="heading text-2xl text-ink">Your Itinerary</h1>
           <p className="text-xs text-muted">{trip.data?.trip.trip_name}</p>
         </div>
         <Link to="/itinerary/map" className="shrink-0 text-xs font-semibold text-rust">

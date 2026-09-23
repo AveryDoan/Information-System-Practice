@@ -33,7 +33,7 @@ export function AIChatbot() {
 
   return (
     <div className="flex flex-col gap-4 px-5 pb-4 pt-14">
-      <h1 className="text-xl font-bold text-ink">AI Trip Assistant</h1>
+      <h1 className="heading text-2xl text-ink">AI Trip Assistant</h1>
 
       <div className="flex flex-col gap-3">
         {messages.map((m, i) => (

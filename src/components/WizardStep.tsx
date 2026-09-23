@@ -41,7 +41,7 @@ export function WizardStep({
       </div>
 
       <div className="flex flex-col gap-1">
-        <h1 className="text-xl font-bold text-ink">{title}</h1>
+        <h1 className="heading text-2xl text-ink">{title}</h1>
         {subtitle && <p className="text-sm text-muted">{subtitle}</p>}
       </div>
 

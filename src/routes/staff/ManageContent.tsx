@@ -8,7 +8,7 @@ import type { ContentStatus, ContentType } from '../../lib/database.types'
 const STATUS_STYLES: Record<ContentStatus, string> = {
   Draft: 'bg-border-card text-muted',
   'Pending Approval': 'bg-chip text-rust',
-  Published: 'bg-teal/10 text-teal',
+  Published: 'bg-success/10 text-success',
   Archived: 'bg-border-card text-muted',
   Inactive: 'bg-border-card text-muted',
 }

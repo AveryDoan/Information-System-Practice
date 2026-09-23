@@ -21,7 +21,7 @@ export function BottomNav() {
         >
           {({ isActive }) => (
             <>
-              <Icon size={20} strokeWidth={2} color={isActive ? '#c1440e' : '#99918c'} />
+              <Icon size={20} strokeWidth={2} color={isActive ? '#e88244' : '#99918c'} />
               <span className={isActive ? 'text-[10px] font-semibold text-rust' : 'text-[10px] font-normal text-nav-muted'}>
                 {label}
               </span>

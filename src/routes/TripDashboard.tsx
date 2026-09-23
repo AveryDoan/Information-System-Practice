@@ -15,7 +15,7 @@ export function TripDashboard() {
     <div className="flex flex-col gap-5 px-5 pb-6 pt-14">
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-1">
-          <h1 className="text-xl font-bold text-ink">{tripRow.trip_name}</h1>
+          <h1 className="heading text-2xl text-ink">{tripRow.trip_name}</h1>
           <p className="text-xs text-muted">
             {tripRow.start_date && new Date(tripRow.start_date).toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })}
             {' – '}

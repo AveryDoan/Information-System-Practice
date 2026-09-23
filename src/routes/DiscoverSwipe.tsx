@@ -57,7 +57,7 @@ export function DiscoverSwipe() {
 
   return (
     <div className="flex h-full flex-col gap-5 px-5 pb-6 pt-14">
-      <h1 className="text-xl font-bold text-ink">Discover</h1>
+      <h1 className="heading text-2xl text-ink">Discover</h1>
 
       <div className="relative flex-1">
         {!current && (

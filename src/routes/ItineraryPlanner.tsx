@@ -43,7 +43,7 @@ export function ItineraryPlanner() {
   return (
     <div className="flex flex-col gap-5 px-5 pb-6 pt-14">
       <div className="flex flex-col gap-1">
-        <h1 className="text-xl font-bold text-ink">✨ Smart Itinerary Planner</h1>
+        <h1 className="heading text-2xl text-ink">✨ Smart Itinerary Planner</h1>
         <p className="text-sm text-muted">
           Describe your trip in one sentence — we'll match it to real Northern Territory destinations and events.
         </p>

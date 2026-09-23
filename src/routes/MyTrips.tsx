@@ -7,7 +7,7 @@ export function MyTrips() {
   return (
     <div className="flex flex-col gap-4 px-5 pb-6 pt-14">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-ink">My Trips</h1>
+        <h1 className="heading text-2xl text-ink">My Trips</h1>
         <Link to="/plan/who" className="text-xs font-semibold text-rust">
           + New trip
         </Link>

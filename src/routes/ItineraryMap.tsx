@@ -69,7 +69,7 @@ export function ItineraryMap() {
   return (
     <div className="flex flex-col gap-4 pb-6 pt-14">
       <div className="flex flex-col gap-1 px-5">
-        <h1 className="text-xl font-bold text-ink">Itinerary Map</h1>
+        <h1 className="heading text-2xl text-ink">Itinerary Map</h1>
         <p className="text-xs text-muted">{trip.data.trip.trip_name}</p>
         <p className="text-[11px] text-muted">📍 Map pins use approximate demo coordinates, not live geocoding.</p>
       </div>
@@ -80,7 +80,7 @@ export function ItineraryMap() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Polyline positions={points.map((p) => p.coord)} pathOptions={{ color: '#c1440e', weight: 3 }} />
+          <Polyline positions={points.map((p) => p.coord)} pathOptions={{ color: '#e88244', weight: 3 }} />
           {points.map(({ item, coord, day }) => (
             <Marker key={item.trip_item_id} position={coord}>
               <Popup>

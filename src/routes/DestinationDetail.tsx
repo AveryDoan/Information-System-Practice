@@ -33,7 +33,7 @@ export function DestinationDetail() {
           onClick={() => (session ? toggleSaved.mutate() : navigate('/login'))}
           className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full bg-white/90"
         >
-          <Heart size={18} fill={isSaved.data ? '#c1440e' : 'none'} color="#c1440e" />
+          <Heart size={18} fill={isSaved.data ? '#e88244' : 'none'} color="#e88244" />
         </button>
       </div>
 
@@ -43,7 +43,7 @@ export function DestinationDetail() {
             {item.category}
           </span>
         )}
-        <h1 className="text-xl font-bold text-ink">{item.title}</h1>
+        <h1 className="heading text-2xl text-ink">{item.title}</h1>
         <p className="text-xs text-muted">
           📍 {item.location}
           {date && ` · ${date.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} at ${date.toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit' })}`}

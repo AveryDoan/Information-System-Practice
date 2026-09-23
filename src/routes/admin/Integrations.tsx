@@ -13,7 +13,7 @@ export function Integrations() {
           <div key={i.sourceName} className="rounded-2xl border border-border-card bg-white p-5">
             <div className="mb-2 flex items-center justify-between">
               <p className="font-semibold text-ink">{i.sourceName}</p>
-              <span className="rounded-full bg-teal/10 px-2 py-0.5 text-xs font-semibold text-teal">Connected</span>
+              <span className="rounded-full bg-success/10 px-2 py-0.5 text-xs font-semibold text-success">Connected</span>
             </div>
             <p className="text-xs text-muted">{i.sourceType}</p>
             <p className="mt-3 text-xs text-muted">{i.count} record{i.count === 1 ? '' : 's'} synced</p>

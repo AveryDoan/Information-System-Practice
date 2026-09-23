@@ -20,7 +20,7 @@ export function SystemHealth() {
           </div>
           <span
             className={`rounded-full px-3 py-1 text-xs font-semibold ${
-              health.data?.database.ok ? 'bg-teal/10 text-teal' : 'bg-chip text-rust'
+              health.data?.database.ok ? 'bg-success/10 text-success' : 'bg-chip text-rust'
             }`}
           >
             {health.isLoading ? 'Checking…' : health.data?.database.ok ? 'Operational' : 'Unreachable'}
@@ -41,7 +41,7 @@ export function SystemHealth() {
             </div>
             <span
               className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                s.status === 'Operational' ? 'bg-teal/10 text-teal' : 'bg-chip text-rust'
+                s.status === 'Operational' ? 'bg-success/10 text-success' : 'bg-chip text-rust'
               }`}
             >
               {s.status}

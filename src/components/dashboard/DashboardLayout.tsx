@@ -34,9 +34,12 @@ export function DashboardLayout({ portalName, portalLabel, nav, loginPath, title
     <div className="flex min-h-svh bg-sand">
       <aside className="flex w-64 shrink-0 flex-col justify-between bg-teal px-4 py-6 text-white">
         <div className="flex flex-col gap-8">
-          <div>
-            <p className="text-sm font-bold">{portalName}</p>
-            <p className="text-xs text-white/60">{portalLabel}</p>
+          <div className="flex items-center gap-2.5">
+            <img src="/favicon.svg" alt="" className="size-8 shrink-0" />
+            <div>
+              <p className="text-sm font-bold">{portalName}</p>
+              <p className="text-xs text-white/60">{portalLabel}</p>
+            </div>
           </div>
           <nav className="flex flex-col gap-1">
             {nav.map(({ to, label, icon: Icon, end }) => (
@@ -74,7 +77,7 @@ export function DashboardLayout({ portalName, portalLabel, nav, loginPath, title
 
       <main className="flex-1 overflow-y-auto">
         <div className="mx-auto max-w-5xl px-8 py-8">
-          <h1 className="mb-6 text-2xl font-bold text-ink">{title}</h1>
+          <h1 className="mb-6 heading text-3xl text-ink">{title}</h1>
           {children}
         </div>
       </main>

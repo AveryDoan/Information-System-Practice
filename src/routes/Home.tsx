@@ -5,6 +5,7 @@ import { EventRow } from '../components/EventRow'
 import { SectionHeader } from '../components/SectionHeader'
 import { useTourismContent } from '../hooks/useTourismContent'
 import { useAuth } from '../lib/auth'
+import { HERO_PHOTOS } from '../lib/heroPhotos'
 
 export function Home() {
   const destinations = useTourismContent('Destination')
@@ -17,7 +18,7 @@ export function Home() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-0.5">
-          <p className="text-lg font-bold text-ink">{firstName ? `G'day, ${firstName}` : "G'day!"}</p>
+          <p className="heading text-xl text-ink">{firstName ? `G'day, ${firstName}` : "G'day!"}</p>
           <p className="text-xs text-muted">📍 Darwin, Northern Territory</p>
         </div>
         <Link
@@ -35,14 +36,16 @@ export function Home() {
         <span className="text-[13px]">Ask me anything about the Territory…</span>
       </Link>
 
-      {/* Hero AI card */}
-      <div className="flex flex-col gap-2.5 rounded-[20px] bg-teal px-5 py-[22px]">
-        <p className="text-base font-bold text-white">✨ Let AI plan your trip</p>
-        <p className="text-xs text-[#e5edeb]">
+      {/* Hero AI card — background photo + brand-tinted scrim, southaustralia.com/app-style */}
+      <div className="relative flex flex-col gap-2.5 overflow-hidden rounded-[20px] px-5 py-[22px]">
+        <img src={HERO_PHOTOS.kakadu} alt="" className="absolute inset-0 size-full object-cover" />
+        <div className="absolute inset-0 bg-teal/70" />
+        <p className="heading relative text-xl text-white">✨ Let AI plan your trip</p>
+        <p className="relative text-xs text-[#e8dccb]">
           Tell us your vibe: wildlife, hidden gems, culture or family fun — and we'll build a day-by-day itinerary
           with maps, timing and events.
         </p>
-        <div className="mt-1 flex items-center gap-4">
+        <div className="relative mt-1 flex items-center gap-4">
           <Link to="/plan/who" className="self-start rounded-[20px] bg-amber px-4 py-2.5 text-xs font-semibold text-ink">
             Start planning →
           </Link>
